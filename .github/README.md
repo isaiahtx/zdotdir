@@ -1,6 +1,8 @@
 # zdotdir
 
-My personal antidote $ZDOTDIR directory## Installation
+My personal antidote $ZDOTDIR directory
+
+## Installation
 
 Clone this project to `$ZDOTDIR`, and then make a symlink to `.zshenv`.
 
