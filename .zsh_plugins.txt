@@ -78,7 +78,7 @@ $ZDOTDIR/.aliases
 romkatv/powerlevel10k kind:fpath
 
 # Or, just load a prompt plugin the normal way.
-sindresorhus/pure
+agnoster/agnoster-zsh-theme
 
 
 ### Utilities
@@ -174,7 +174,8 @@ ohmyzsh/ohmyzsh path:plugins/fancy-ctrl-z
 ###
 belak/zsh-utils path:history
 belak/zsh-utils path:utility
-belak/zsh-utils path:editor
+#belak/zsh-utils path:editor
+# the above package breaks history-substring-search
 
 ### Deferred Plugins
 #

@@ -9,7 +9,9 @@ alias l=ls
 alias g=git
 
 # mask built-ins with better defaults
-alias vi=vim
+alias vi=nvim
+alias svi='sudo nvim '
+alias vim=nvim
 
 # more ways to ls
 alias ll='ls -lh'
@@ -19,6 +21,8 @@ alias ldot='ls -ld .*'
 # fix common typos
 alias quit='exit'
 alias cd..='cd ..'
+alias clera='clear'
+alias claer='clear'
 
 # tar
 alias tarls="tar -tvf"
