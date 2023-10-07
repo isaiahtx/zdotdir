@@ -16,6 +16,7 @@ alias vim=nvim
 # more ways to ls
 alias ll='ls -lh'
 alias la='ls -lAh'
+alias lsa='ls -lAh'
 alias ldot='ls -ld .*'
 
 # fix common typos
