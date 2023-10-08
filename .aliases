@@ -14,7 +14,7 @@ alias svi='sudo nvim '
 alias vim=nvim
 
 # fix sudo
-alias sudo=' sudo'
+alias sudo='sudo '
 
 # more ways to ls
 alias ll='ls -lh'
