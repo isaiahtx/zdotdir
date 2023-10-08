@@ -4,7 +4,7 @@
 #
 
 # single character aliases - be sparing!
-alias _=sudo
+alias _=' sudo'
 alias l=ls
 alias g=git
 
@@ -12,6 +12,9 @@ alias g=git
 alias vi=nvim
 alias svi='sudo nvim '
 alias vim=nvim
+
+# fix sudo
+alias sudo=' sudo'
 
 # more ways to ls
 alias ll='ls -lh'
