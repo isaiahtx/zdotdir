@@ -4,7 +4,6 @@
 #
 
 # single character aliases - be sparing!
-alias _=' sudo'
 alias l=ls
 alias g=git
 
@@ -12,6 +11,9 @@ alias g=git
 alias vi=nvim
 alias svi='sudo nvim '
 alias vim=nvim
+
+# download with vpn
+alias piadown='curl --interface tun0 --remote-name '
 
 # fix sudo
 alias sudo='sudo '
