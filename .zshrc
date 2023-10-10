@@ -8,6 +8,9 @@ setopt extended_glob appendhistory EXTENDED_HISTORY HIST_FIND_NO_DUPS HIST_IGNOR
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=$HOME/.histfile
+bindkey  "^[[H"   beginning-of-line
+bindkey  "^[[F"   end-of-line
+bindkey  "^[[3~"  delete-char
 bindkey '^[[A' history-substring-search-up
 bindkey '^[OA' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
@@ -35,3 +38,5 @@ source ${ZDOTDIR:-~}/.antidote/antidote.zsh
 antidote load
 
 archey
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

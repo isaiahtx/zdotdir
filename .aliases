@@ -11,6 +11,7 @@ alias g=git
 alias vi=nvim
 alias svi='sudo nvim '
 alias vim=nvim
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 # download with vpn
 alias piadown='curl --interface tun0 --remote-name '
