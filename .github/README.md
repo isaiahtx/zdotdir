@@ -9,7 +9,7 @@ Clone this project to `$ZDOTDIR`, and then make a symlink to `.zshenv`.
 ```zsh
 # clone this project
 ZDOTDIR=~/.config/zsh
-git clone https://github.com/getantidote/zdotdir $ZDOTDIR
+git clone https://github.com/isaiahtx/zdotdir.git $ZDOTDIR
 
 # symlink .zshenv
 [[ -f ~/.zshenv ]] && mv -f ~/.zshenv ~/.zshenv.bak
