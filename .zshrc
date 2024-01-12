@@ -23,6 +23,7 @@ autoload -U colors && colors
 
 # Autoload functions you might want to use with antidote.
 ZFUNCDIR=${ZFUNCDIR:-$ZDOTDIR/functions}
+export NDOTDIR=${HOME}/.config/nvim
 fpath=($ZFUNCDIR $fpath)
 autoload -Uz $fpath[1]/*(.:t)
 
