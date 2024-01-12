@@ -1,10 +1,10 @@
 # zdotdir
 
-My personal [antidote](https://github.com/mattmc3/antidote) $ZDOTDIR directory
+My personal [Antidote](https://github.com/mattmc3/antidote) `$ZDOTDIR` directory. Antidote is a ZSH plugin manager, $ZDOTDIR is where the config files are stored. Running the below code will set up your terminal to look and function exactly like mine (and I think mine looks and works very nicely).
 
 ## Installation
 
-Clone this project to `$ZDOTDIR`, and then make a symlink to `.zshenv`.
+Install ZSH and then run the below code.
 
 ```zsh
 # clone this project
