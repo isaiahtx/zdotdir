@@ -1,6 +1,6 @@
 # zdotdir
 
-My personal antidote $ZDOTDIR directory
+My personal [antidote](https://github.com/mattmc3/antidote) $ZDOTDIR directory
 
 ## Installation
 
