@@ -3,6 +3,10 @@
 # .zshrc - Zsh file loaded on interactive shell sessions.
 #
 
+# Extras
+export NDOTDIR=${HOME}/.config/nvim
+export NSWAPDIR=${HOME}/.local/state/nvim/swap/
+
 # Zsh options.
 setopt extended_glob appendhistory EXTENDED_HISTORY HIST_FIND_NO_DUPS HIST_IGNORE_ALL_DUPS promptsubst
 HISTSIZE=10000
@@ -23,7 +27,6 @@ autoload -U colors && colors
 
 # Autoload functions you might want to use with antidote.
 ZFUNCDIR=${ZFUNCDIR:-$ZDOTDIR/functions}
-export NDOTDIR=${HOME}/.config/nvim
 fpath=($ZFUNCDIR $fpath)
 autoload -Uz $fpath[1]/*(.:t)
 
@@ -43,3 +46,4 @@ archey
 if [ -f ~/.fzf.zsh ]; then
     source ~/.fzf.zsh
 fi
+
