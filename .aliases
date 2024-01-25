@@ -29,6 +29,7 @@ alias ldot='ls -ld .*'
 alias quit='exit'
 alias cd..='cd ..'
 alias clera='clear'
+alias celar='clear'
 alias claer='clear'
 
 # tar
