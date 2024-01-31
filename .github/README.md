@@ -31,3 +31,5 @@ ln -s $ZDOTDIR/.zshenv ~/.zshenv
 # start a new zsh session
 zsh
 ```
+
+Note: this will replace your current `~/.zshenv` with a symlink to a new one. The old config file and will be renamed to `~/.zhsenv.bak`.
