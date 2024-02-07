@@ -41,7 +41,19 @@ autoload -Uz $fpath[1]/*(.:t)
 source ${ZDOTDIR:-~}/.antidote/antidote.zsh
 antidote load
 
-archey
+if grep -qi 'Arch' /etc/os-release; then
+    if command -v archey &> /dev/null; then
+        archey
+    fi
+elif grep -qiE 'debian|ubuntu' /etc/os-release; then
+    if command -v neofetch &> /dev/null; then
+        neofetch
+    fi
+    if grep -qi 'microsoft' /proc/version; then
+	browser_path="$ZDOTDIR/open-browser.sh"
+        export BROWSER="$browser_path"
+    fi
+fi
 
 if [ -f ~/.fzf.zsh ]; then
     source ~/.fzf.zsh
