@@ -32,7 +32,7 @@ ln -s $ZDOTDIR/.zshenv ~/.zshenv
 zsh
 
 # set default shell to zsh
-sudo chsh -s /bin/zsh
+chsh -s /bin/zsh
 ```
 
 Note: this will replace your current `~/.zshenv` with a symlink to a new one. The old config file and will be renamed to `~/.zhsenv.bak`.
