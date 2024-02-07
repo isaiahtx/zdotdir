@@ -28,12 +28,11 @@ git clone https://github.com/isaiahtx/zdotdir.git $ZDOTDIR
 [[ -f ~/.zshenv ]] && mv -f ~/.zshenv ~/.zshenv.bak
 ln -s $ZDOTDIR/.zshenv ~/.zshenv
 
+# set default shell to zsh (optional)
+chsh -s /bin/zsh
+
 # start a new zsh session
 zsh
-
-# set default shell to zsh
-chsh -s /bin/zsh
 ```
 
 Note: this will replace your current `~/.zshenv` with a symlink to a new one. The old config file and will be renamed to `~/.zhsenv.bak`.
-
