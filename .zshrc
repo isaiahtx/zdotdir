@@ -41,17 +41,22 @@ autoload -Uz $fpath[1]/*(.:t)
 source ${ZDOTDIR:-~}/.antidote/antidote.zsh
 antidote load
 
-if grep -qi 'Arch' /etc/os-release; then
+
+if [[ -f /etc/os-release ]] && grep -qi 'Arch' /etc/os-release; then
     if command -v archey &> /dev/null; then
         archey
     fi
-elif grep -qiE 'debian|ubuntu' /etc/os-release; then
+elif [[ -f /etc/os-release ]] && grep -qiE 'debian|ubuntu' /etc/os-release; then
     if command -v neofetch &> /dev/null; then
         neofetch
     fi
     if grep -qi 'microsoft' /proc/version; then
-	browser_path="$ZDOTDIR/open-browser.sh"
+        browser_path="$ZDOTDIR/open-browser.sh"
         export BROWSER="$browser_path"
+    fi
+elif [[ "$(uname -s)" == "Darwin" ]]; then
+    if command -v archey &> /dev/null; then
+        archey
     fi
 fi
 
