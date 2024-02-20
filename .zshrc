@@ -43,6 +43,7 @@ antidote load
 
 
 if [[ -f /etc/os-release ]] && grep -qi 'Arch' /etc/os-release; then
+    export PATH="${PATH}:/home/isaia/.local/share/gem/ruby/3.0.0/bin"
     if command -v archey &> /dev/null; then
         archey
     fi
