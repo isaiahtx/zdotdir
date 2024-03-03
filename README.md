@@ -35,4 +35,5 @@ chsh -s /bin/zsh
 zsh
 ```
 
-Note: this will replace your current `~/.zshenv` with a symlink to a new one. The old config file and will be renamed to `~/.zhsenv.bak`.
+Note: this will replace your current `~/.zshenv` with a symlink to a new
+one. The old config file and will be renamed to `~/.zhsenv.bak`.

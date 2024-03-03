@@ -41,11 +41,13 @@ autoload -Uz $fpath[1]/*(.:t)
 source ${ZDOTDIR:-~}/.antidote/antidote.zsh
 antidote load
 
-if grep -qi 'Arch' /etc/os-release; then
+
+if [[ -f /etc/os-release ]] && grep -qi 'Arch' /etc/os-release; then
+    export PATH="${PATH}:/home/isaia/.local/share/gem/ruby/3.0.0/bin"
     if command -v archey &> /dev/null; then
         archey
     fi
-elif grep -qiE 'debian|ubuntu' /etc/os-release; then
+elif [[ -f /etc/os-release ]] && grep -qiE 'debian|ubuntu' /etc/os-release; then
     if command -v neofetch &> /dev/null; then
         neofetch
     fi
@@ -58,6 +60,10 @@ elif grep -qiE 'debian|ubuntu' /etc/os-release; then
         if command -v pyenv 1>/dev/null 2>&1; then
             eval "$(pyenv init -)"
         fi
+    fi
+elif [[ "$(uname -s)" == "Darwin" ]]; then
+    if command -v archey &> /dev/null; then
+        archey
     fi
 fi
 
