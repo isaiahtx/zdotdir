@@ -56,6 +56,7 @@ elif [[ -f /etc/os-release ]] && grep -qiE 'debian|ubuntu' /etc/os-release; then
         export BROWSER="$browser_path"
     fi
 elif [[ "$(uname -s)" == "Darwin" ]]; then
+    export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
     if command -v archey &> /dev/null; then
         archey
     fi
