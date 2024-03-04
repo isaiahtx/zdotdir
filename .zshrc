@@ -54,6 +54,12 @@ elif [[ -f /etc/os-release ]] && grep -qiE 'debian|ubuntu' /etc/os-release; then
     if grep -qi 'microsoft' /proc/version; then
         browser_path="$ZDOTDIR/open-browser.sh"
         export BROWSER="$browser_path"
+        export PATH="$HOME/.local/bin:$PATH"
+        export PYENV_ROOT="$HOME/.pyenv"
+        export PATH="$PYENV_ROOT/bin:$PATH"
+        if command -v pyenv 1>/dev/null 2>&1; then
+            eval "$(pyenv init -)"
+        fi
     fi
 elif [[ "$(uname -s)" == "Darwin" ]]; then
     export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
