@@ -44,6 +44,7 @@ antidote load
 
 if [[ -f /etc/os-release ]] && grep -qi 'Arch' /etc/os-release; then
     export PATH="${PATH}:/home/isaia/.local/share/gem/ruby/3.0.0/bin"
+    export XDG_RUNTIME_DIR=/mnt/wslg/runtime-dir
     if command -v archey &> /dev/null; then
         archey
     fi
@@ -53,6 +54,7 @@ elif [[ -f /etc/os-release ]] && grep -qiE 'debian|ubuntu' /etc/os-release; then
     fi
     if grep -qi 'microsoft' /proc/version; then
         browser_path="$ZDOTDIR/open-browser.sh"
+        export XDG_RUNTIME_DIR=/mnt/wslg/runtime-dir
         export BROWSER="$browser_path"
         export PATH="$HOME/.local/bin:$PATH"
         export PYENV_ROOT="$HOME/.pyenv"
