@@ -44,6 +44,24 @@ antidote load
 
 if [[ -f /etc/os-release ]] && grep -qi 'Arch' /etc/os-release; then
     export PATH="${PATH}:/home/isaia/.local/share/gem/ruby/3.0.0/bin"
+    if grep -qi 'microsoft' /proc/version; then
+        # For some reason Wayland wasn't working with WSL Arch, so this code
+        # should fix that by adding symbolic links to /run/user/1000 to
+        # /mnt/wslg/runtime-dir/wayland-0*.
+        for src in /mnt/wslg/runtime-dir/wayland-0*; do
+            # Check if the source file exists to avoid "no matches found"
+            if [ -e "$src" ]; then
+                # Extract the filename from the source path
+                filename=$(basename "$src")
+                target="/run/user/1000/$filename"
+
+                # Only create the symbolic link if the target does not exist
+                if [ ! -e "$target" ]; then
+                    ln -s "$src" "$target" 2>/dev/null
+                fi
+            fi
+        done
+    fi
     if command -v archey &> /dev/null; then
         archey
     fi
