@@ -81,6 +81,8 @@ elif [[ -f /etc/os-release ]] && grep -qiE 'debian|ubuntu' /etc/os-release; then
     fi
 elif [[ "$(uname -s)" == "Darwin" ]]; then
     export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+    export GEM_HOME="$HOME/.gem"
+    export PATH="$HOME/.gem/bin:$PATH"
     if command -v archey &> /dev/null; then
         archey
     fi
