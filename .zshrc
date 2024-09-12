@@ -83,8 +83,8 @@ elif [[ "$(uname -s)" == "Darwin" ]]; then
     export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
     export GEM_HOME="$HOME/.gem"
     export PATH="$HOME/.gem/bin:$PATH"
-    if command -v archey &> /dev/null; then
-        archey
+    if command -v neofetch &> /dev/null; then
+        neofetch
     fi
 fi
 
