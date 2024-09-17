@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+echo 'delete from ZTEXTREPLACEMENTENTRY;' | sqlite3 ~/Library/KeyboardServices/TextReplacements.db
+defaults delete -g NSUserDictionaryReplacementItems
+chmod 000 ~/Library/KeyboardServices
