@@ -12,9 +12,6 @@ configuration information and the code to keep Antidote installed and up to
 date. The file `.zsh_plugins.txt` contains all the `zsh` plugins I have
 installed.
 
-**Note:** For those not on Arch, you will want to remove the line labelled
-`archey` in [.zshrc](.zshrc)
-
 ## Installation
 
 Install ZSH and then run the below code.
