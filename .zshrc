@@ -6,6 +6,7 @@
 # Extras
 export NDOTDIR=${HOME}/.config/nvim
 export NSWAPDIR=${HOME}/.local/state/nvim/swap/
+export PATH=$PATH:$HOME/go/bin
 
 # Zsh options.
 setopt extended_glob appendhistory EXTENDED_HISTORY HIST_FIND_NO_DUPS HIST_IGNORE_ALL_DUPS promptsubst
