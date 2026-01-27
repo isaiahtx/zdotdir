@@ -70,6 +70,7 @@ elif [[ -f /etc/os-release ]] && grep -qiE 'debian|ubuntu' /etc/os-release; then
     if command -v neofetch &> /dev/null; then
         neofetch
     fi
+    export PATH="$PATH:/snap/bin"
     if grep -qi 'microsoft' /proc/version; then
         browser_path="$ZDOTDIR/open-browser.sh"
         export BROWSER="$browser_path"
