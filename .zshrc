@@ -2,12 +2,11 @@
 #
 # .zshrc - Zsh file loaded on interactive shell sessions.
 #
-
 # Extras
 export NDOTDIR=${HOME}/.config/nvim
 export NSWAPDIR=${HOME}/.local/state/nvim/swap/
 export PATH=$PATH:$HOME/go/bin
-
+export BROWSER=wslview
 # Zsh options.
 setopt extended_glob appendhistory EXTENDED_HISTORY HIST_FIND_NO_DUPS HIST_IGNORE_ALL_DUPS promptsubst
 HISTSIZE=10000
@@ -25,25 +24,25 @@ bindkey "$terminfo[kcud1]" history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 autoload -U colors && colors
-
 export POETRY_VIRTUALENVS_IN_PROJECT=true
-
 # Autoload functions you might want to use with antidote.
 ZFUNCDIR=${ZFUNCDIR:-$ZDOTDIR/functions}
 fpath=($ZFUNCDIR $fpath)
 autoload -Uz $fpath[1]/*(.:t)
-
 # Source zstyles you might use with antidote.
 [[ -e ${ZDOTDIR:-~}/.zstyles ]] && source ${ZDOTDIR:-~}/.zstyles
-
 # Clone antidote if necessary.
 [[ -d ${ZDOTDIR:-~}/.antidote ]] ||
   git clone https://github.com/mattmc3/antidote ${ZDOTDIR:-~}/.antidote
-
 # Create an amazing Zsh config using antidote plugins.
 source ${ZDOTDIR:-~}/.antidote/antidote.zsh
 antidote load
 
+# WSL-specific aliases (any distro)
+if grep -qi 'microsoft' /proc/version 2>/dev/null; then
+    alias explorer="explorer.exe"
+    export COLORTERM=truecolor
+fi
 
 if [[ -f /etc/os-release ]] && grep -qi 'Arch' /etc/os-release; then
     export PATH="${PATH}:/home/isaia/.local/share/gem/ruby/3.0.0/bin"
@@ -57,7 +56,6 @@ if [[ -f /etc/os-release ]] && grep -qi 'Arch' /etc/os-release; then
                 # Extract the filename from the source path
                 filename=$(basename "$src")
                 target="/run/user/1000/$filename"
-
                 # Only create the symbolic link if the target does not exist
                 if [ ! -e "$target" ]; then
                     ln -s "$src" "$target" 2>/dev/null
@@ -75,7 +73,7 @@ elif [[ -f /etc/os-release ]] && grep -qiE 'debian|ubuntu' /etc/os-release; then
     export PATH="$PATH:/snap/bin"
     if grep -qi 'microsoft' /proc/version; then
         browser_path="$ZDOTDIR/open-browser.sh"
-        export BROWSER="$browser_path"
+        # export BROWSER="$browser_path"
         export PATH="$HOME/.local/bin:$PATH"
         export PYENV_ROOT="$HOME/.pyenv"
         export PATH="$PYENV_ROOT/bin:$PATH"
@@ -91,8 +89,6 @@ elif [[ "$(uname -s)" == "Darwin" ]]; then
         neofetch
     fi
 fi
-
 if [ -f ~/.fzf.zsh ]; then
     source ~/.fzf.zsh
 fi
-
