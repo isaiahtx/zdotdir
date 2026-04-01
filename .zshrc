@@ -6,7 +6,6 @@
 export NDOTDIR=${HOME}/.config/nvim
 export NSWAPDIR=${HOME}/.local/state/nvim/swap/
 export PATH=$PATH:$HOME/go/bin
-export BROWSER=wslview
 # Zsh options.
 setopt extended_glob appendhistory EXTENDED_HISTORY HIST_FIND_NO_DUPS HIST_IGNORE_ALL_DUPS promptsubst
 HISTSIZE=10000
@@ -42,10 +41,13 @@ antidote load
 if grep -qi 'microsoft' /proc/version 2>/dev/null; then
     alias explorer="explorer.exe"
     export COLORTERM=truecolor
+    export BROWSER=wslview
 fi
 
 if [[ -f /etc/os-release ]] && grep -qi 'Arch' /etc/os-release; then
-    export PATH="${PATH}:/home/isaia/.local/share/gem/ruby/3.0.0/bin"
+    local ruby_gem_bin
+    ruby_gem_bin=$(ls -d "$HOME/.local/share/gem/ruby"/*/bin 2>/dev/null | sort -V | tail -1)
+    [[ -n "$ruby_gem_bin" ]] && export PATH="${PATH}:${ruby_gem_bin}"
     if grep -qi 'microsoft' /proc/version; then
         # For some reason Wayland wasn't working with WSL Arch, so this code
         # should fix that by adding symbolic links to /run/user/1000 to
@@ -55,7 +57,7 @@ if [[ -f /etc/os-release ]] && grep -qi 'Arch' /etc/os-release; then
             if [ -e "$src" ]; then
                 # Extract the filename from the source path
                 filename=$(basename "$src")
-                target="/run/user/1000/$filename"
+                target="/run/user/$(id -u)/$filename"
                 # Only create the symbolic link if the target does not exist
                 if [ ! -e "$target" ]; then
                     ln -s "$src" "$target" 2>/dev/null
@@ -92,3 +94,8 @@ fi
 if [ -f ~/.fzf.zsh ]; then
     source ~/.fzf.zsh
 fi
+
+export NVM_DIR="${NVM_DIR:-${XDG_CONFIG_HOME:-$HOME/.config}/nvm}"
+[[ ! -s "$NVM_DIR/nvm.sh" ]] && NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
