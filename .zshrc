@@ -74,9 +74,17 @@ elif [[ -f /etc/os-release ]] && grep -qiE 'debian|ubuntu' /etc/os-release; then
         neofetch
     fi
     export PATH="$PATH:/snap/bin"
+    export PATH="$PATH:/opt/nvim/"
     if grep -qi 'microsoft' /proc/version; then
+        # Force GTK apps to use X11 so xdotool can find them (WSLg defaults to Wayland)
+        export GDK_BACKEND=x11
+        # Start D-Bus session daemon if not running (needed for Zathura/VimTeX)
+        if [ ! -S /run/user/$(id -u)/bus ]; then
+            dbus-daemon --session --address="unix:path=/run/user/$(id -u)/bus" --fork 2>/dev/null
+        fi
         browser_path="$ZDOTDIR/open-browser.sh"
         # export BROWSER="$browser_path"
+        export PATH="$HOME/.npm-global/bin:$HOME/.local/bin:$PATH"
         export PYENV_ROOT="$HOME/.pyenv"
         export PATH="$PYENV_ROOT/bin:$PATH"
         if command -v pyenv 1>/dev/null 2>&1; then
