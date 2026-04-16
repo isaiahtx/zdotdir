@@ -24,6 +24,7 @@ bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 autoload -U colors && colors
 export POETRY_VIRTUALENVS_IN_PROJECT=true
+export CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING=1
 # Autoload functions you might want to use with antidote.
 ZFUNCDIR=${ZFUNCDIR:-$ZDOTDIR/functions}
 fpath=($ZFUNCDIR $fpath)
