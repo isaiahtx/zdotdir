@@ -70,7 +70,9 @@ if [[ -f /etc/os-release ]] && grep -qi 'Arch' /etc/os-release; then
         archey
     fi
 elif [[ -f /etc/os-release ]] && grep -qiE 'debian|ubuntu' /etc/os-release; then
-    if command -v neofetch &> /dev/null; then
+    if command -v fastfetch &> /dev/null; then
+        fastfetch --logo ubuntu_old
+    elif command -v neofetch &> /dev/null; then
         neofetch
     fi
     export PATH="$PATH:/snap/bin"
