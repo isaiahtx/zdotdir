@@ -109,3 +109,24 @@ export NVM_DIR="${NVM_DIR:-${XDG_CONFIG_HOME:-$HOME/.config}/nvm}"
 [[ ! -s "$NVM_DIR/nvm.sh" ]] && NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+if command -v eza >/dev/null 2>&1; then
+  alias ls='eza'
+fi
+
+export HOMEBREW_OUTDATED_CACHE="$HOME/.cache/brew_outdated_count"
+
+function brew_outdated_count {
+  if [[ -f "$HOMEBREW_OUTDATED_CACHE" ]]; then
+    echo "🔄 Brew updates: $(cat "$HOMEBREW_OUTDATED_CACHE")"
+  else
+    echo "🔄 Brew updates: ?"
+  fi
+}
+
+brew_outdated_count &
+
+{
+  count=$(brew outdated --quiet 2>/dev/null | wc -l)
+  echo $count > "$HOMEBREW_OUTDATED_CACHE"
+} &!

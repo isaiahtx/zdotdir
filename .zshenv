@@ -32,3 +32,5 @@ path=(
   /usr/local/{,s}bin(N)
   $path
 )
+
+. "$HOME/.cargo/env"
