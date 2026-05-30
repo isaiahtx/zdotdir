@@ -46,9 +46,11 @@ if grep -qi 'microsoft' /proc/version 2>/dev/null; then
 fi
 
 if [[ -f /etc/os-release ]] && grep -qi 'Arch' /etc/os-release; then
-    local ruby_gem_bin
-    ruby_gem_bin=$(ls -d "$HOME/.local/share/gem/ruby"/*/bin 2>/dev/null | sort -V | tail -1)
-    [[ -n "$ruby_gem_bin" ]] && export PATH="${PATH}:${ruby_gem_bin}"
+    if command -v gem &> /dev/null; then
+      local ruby_gem_bin
+      ruby_gem_bin=$(ls -d "$HOME/.local/share/gem/ruby"/*/bin 2>/dev/null | sort -V | tail -1)
+      [[ -n "$ruby_gem_bin" ]] && export PATH="${PATH}:${ruby_gem_bin}"
+    fi
     if grep -qi 'microsoft' /proc/version; then
         # For some reason Wayland wasn't working with WSL Arch, so this code
         # should fix that by adding symbolic links to /run/user/1000 to
