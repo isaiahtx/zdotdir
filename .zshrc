@@ -66,9 +66,14 @@ if [[ -f /etc/os-release ]] && grep -qi 'Arch' /etc/os-release; then
             fi
         done
     fi
-    if command -v archey &> /dev/null; then
+    if command -v fastfetch &> /dev/null; then
+        fastfetch
+    elif command -v neofetch &> /dev/null; then
+        neofetch
+    elif command -v archey &> /dev/null; then
         archey
     fi
+    export PATH="$PATH:/opt/nvim"
 elif [[ -f /etc/os-release ]] && grep -qiE 'debian|ubuntu' /etc/os-release; then
     if command -v fastfetch &> /dev/null; then
         fastfetch --logo ubuntu_old
@@ -97,10 +102,31 @@ elif [[ "$(uname -s)" == "Darwin" ]]; then
     export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
     export GEM_HOME="$HOME/.gem"
     export PATH="$HOME/.gem/bin:$PATH"
-    if command -v neofetch &> /dev/null; then
+    if command -v fastfetch &> /dev/null; then
+	fastfetch
+    elif command -v neofetch &> /dev/null; then
         neofetch
     fi
+
+
+    export HOMEBREW_OUTDATED_CACHE="$HOME/.cache/brew_outdated_count"
+    
+    function brew_outdated_count {
+      if [[ -f "$HOMEBREW_OUTDATED_CACHE" ]]; then
+        echo "🔄 Brew updates: $(cat "$HOMEBREW_OUTDATED_CACHE")"
+      else
+        echo "🔄 Brew updates: ?"
+      fi
+    }
+    
+    brew_outdated_count &
+    
+    {
+      count=$(brew outdated --quiet 2>/dev/null | wc -l)
+      echo $count > "$HOMEBREW_OUTDATED_CACHE"
+    } &!
 fi
+
 if [ -f ~/.fzf.zsh ]; then
     source ~/.fzf.zsh
 fi
@@ -113,20 +139,3 @@ export NVM_DIR="${NVM_DIR:-${XDG_CONFIG_HOME:-$HOME/.config}/nvm}"
 if command -v eza >/dev/null 2>&1; then
   alias ls='eza'
 fi
-
-export HOMEBREW_OUTDATED_CACHE="$HOME/.cache/brew_outdated_count"
-
-function brew_outdated_count {
-  if [[ -f "$HOMEBREW_OUTDATED_CACHE" ]]; then
-    echo "🔄 Brew updates: $(cat "$HOMEBREW_OUTDATED_CACHE")"
-  else
-    echo "🔄 Brew updates: ?"
-  fi
-}
-
-brew_outdated_count &
-
-{
-  count=$(brew outdated --quiet 2>/dev/null | wc -l)
-  echo $count > "$HOMEBREW_OUTDATED_CACHE"
-} &!
