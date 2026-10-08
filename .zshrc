@@ -18,8 +18,8 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[OA' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 bindkey '^[OB' history-substring-search-down
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
+[[ -n ${terminfo[kcuu1]:-} ]] && bindkey "$terminfo[kcuu1]" history-substring-search-up
+[[ -n ${terminfo[kcud1]:-} ]] && bindkey "$terminfo[kcud1]" history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 autoload -U colors && colors
@@ -141,3 +141,8 @@ export NVM_DIR="${NVM_DIR:-${XDG_CONFIG_HOME:-$HOME/.config}/nvm}"
 if command -v eza >/dev/null 2>&1; then
   alias ls='eza'
 fi
+
+# bun completions
+[ -s "/home/isaia/.bun/_bun" ] && source "/home/isaia/.bun/_bun"
+
+. "$HOME/.local/share/../bin/env"

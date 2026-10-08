@@ -28,6 +28,7 @@ typeset -gU path fpath
 path=(
   $HOME/{,s}bin(N)
   $HOME/.local/{,s}bin(N)
+  $HOME/.bun/bin(N)
   /opt/{homebrew,local}/{,s}bin(N)
   /usr/local/{,s}bin(N)
   $path
